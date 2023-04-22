@@ -71,4 +71,29 @@ public class TarefaController : Controller
 
         return View(tarefa);
     }
+
+    public IActionResult FinalizarTarefa(int id)
+    {
+        if (!_sessao.ValidarSessao())
+        {
+            return RedirectToAction("Entrar", "Login");
+        }
+
+        var tarefa = _tarefaRepository.BuscarTarefa(id);
+
+        return View(tarefa);
+    }
+
+    [HttpPost]
+    public IActionResult FinalizarTarefa(int id, string descricaoFinal)
+    {
+        if (!_sessao.ValidarSessao())
+        {
+            return RedirectToAction("Entrar", "Login");
+        }
+
+        _tarefaRepository.EditarTarefa(id, descricaoFinal);
+
+        return RedirectToAction("ListarTarefas");
+    }
 }
