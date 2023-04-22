@@ -1,7 +1,8 @@
+using TarefasFIESC.Servicos;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.ConfiguracaoServico();
 
 var app = builder.Build();
 
