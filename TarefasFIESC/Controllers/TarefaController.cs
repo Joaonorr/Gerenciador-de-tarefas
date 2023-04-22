@@ -96,4 +96,17 @@ public class TarefaController : Controller
 
         return RedirectToAction("ListarTarefas");
     }
+
+    [HttpPost]
+    public IActionResult CriarTarefa(TarefaModel tarefa)
+    {
+        if (!_sessao.ValidarSessao())
+        {
+            return RedirectToAction("Entrar", "Login");
+        }
+
+        _tarefaRepository.Adicionar(tarefa);
+
+        return RedirectToAction("ListarTarefas");
+    }
 }
