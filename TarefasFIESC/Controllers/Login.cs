@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TarefasFIESC.Models;
 using TarefasFIESC.Seguranca;
 using TarefasFIESC.Sessoes;
@@ -58,4 +59,41 @@ public class Login : Controller
         return View();
     }
 
+    public IActionResult CriarConta()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult CriarConta(UsuarioModel usuario)
+    {
+        var usuarioIdentity = new IdentityUser
+        {
+            UserName = usuario.Email,
+            Email = usuario.Email
+        };
+
+        var userClaims = new List<Claim>()
+        {
+            new Claim("Nome", usuario.Nome)
+        };
+
+        _userManager.CreateAsync(usuarioIdentity, usuario.Senha);
+
+        _userManager.AddClaimsAsync(usuarioIdentity, userClaims);
+
+
+        var token = GerenciarToken.GerarToken(usuario.Email, _userManager, _configuration);
+
+        _sessao.CriarSessao(token);
+
+        return RedirectToAction("Tarefa", "ListarTarefas");
+
+    }
+    public IActionResult Sair()
+    {
+        _sessao.RemoverSessao();
+
+        return View("Entrar");
+    }
 }
