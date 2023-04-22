@@ -1,0 +1,36 @@
+﻿@model ViewTarefaModel
+@{
+    ViewData["Title"] = "Tarefas";
+}
+
+<div class="row m-5 ms-0">
+    <h1>Lista de tarefa</h1>
+</div>
+<table class="table" id="Tabela-Tarefas">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Título</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Prioridade</th>
+      <th scope="col">Responsável</th>
+      <th scope="col">Data de registro</th>
+    </tr>
+  </thead>
+  <tbody>
+        @if(Model.Tarefas != null && Model.Tarefas.Any())
+        {
+            foreach(var tarefa in Model.Tarefas)
+            {
+                <tr>
+                    <th scope="row"><a asp-controller="Tarefa" asp-action="DetalharTarefa" asp-route-id="@tarefa.Id">@tarefa.Id</a></th>
+                    <td>@tarefa.Titulo</td>
+                    <td>@tarefa.Tipo</td>
+                    <td>@tarefa.Situacao</td>
+                    <td>@tarefa.Prioridade</td>
+                    <td>@tarefa.DataDeCricacao.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

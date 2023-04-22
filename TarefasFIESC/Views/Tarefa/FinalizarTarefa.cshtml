@@ -1,0 +1,24 @@
+﻿@model TarefaModel
+
+<form asp-contoller="Tarefa" asp-action="FinalizarTarefa" method="post">
+    <div class="row">
+        <div class="col">
+            <p class="display-6">Finaliziar tarefa @Model.Id</p>
+            <h3>@Model.Titulo</h3>
+            <p><strong>Responsável: </strong> XXXNome do usuárioXXX</p>        
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col">
+            <h6>Descrição de conclusão*</h6>
+            <textarea class="form-control form-control-plaintext secondary bg-body" style="--bs-bg-opacity: .2;" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-3">
+            <button type="submit" class="btn btn-warning col" asp-for="DescricaoFinal">Finalizar tarefa</button>
+            <a class="btn btn-outline-primary" asp-controller="Tarefa" asp-action="DetalharTarefa" asp-route-id="@Model.Id" role="button">Cancelar</a>
+        </div>
+
+    </div>
+</form>

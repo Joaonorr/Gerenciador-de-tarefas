@@ -1,0 +1,61 @@
+﻿@model TarefaModel
+
+<form asp-contoller="Tarefa" asp-action="AdicionarObservacao" method="post">
+    <a asp-controller="Tarefa" asp-action="ListarTarefas">Voltar</a>
+    <div class="row mt-2">
+        <div class="col">
+            <p class="display-6">Detalhes da tarefa @Model.Id</p>
+            <h3>@Model.Titulo</h3>
+            <p><strong>Responsável: </strong> XXNome do usuárioXX</p>
+            @if (Model.Situacao != "Fechada")
+            {
+                <button type="button" class="btn btn-secondary col-2">Assumir Tarefa</button>                
+            }
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-8">
+            <textarea class="form-control form-control-plaintext px-2" rows="8" readonly>@Model.Descricao</textarea>
+        </div>
+        <div class="col">
+            <p><strong>Prioridade:</strong> @Model.Prioridade</p>
+            <p><strong>Tipo:</strong> @Model.Tipo</p>
+            <p><strong>Criação:</strong> @Model.DataDeCricacao</p>
+            <p><strong>Situação:</strong> @Model.Situacao</p>
+            @if (Model.Situacao != "Fechada")
+            {
+                <a type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@Model.Id">Finalizar tarefa</a>                
+            }
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-3">
+            <h6>Nova observação</h6>
+            <textarea name="novaObservacao" class="form-control form-control-plaintext bg-body px-2" style="--bs-bg-opacity: .2;" rows="5"></textarea>
+            <input type="hidden" name="tarefaId" value="@Model.Id" />
+        </div>
+        <div class="col">
+            <h6>Observações</h6>
+            @if (Model.Observacoes != null && Model.Observacoes.Count > 0)
+            {
+                List<ObservacaoModel> teste = Model.Observacoes.ToList();
+                foreach (ObservacaoModel observacao in Model.Observacoes)
+                {
+                    <p><strong>Usuário XXX</strong> em @observacao.DataCriacao</p>
+                    <textarea class="form-control form-control-plaintext px-2" readonly>@observacao.Descricao</textarea>
+
+                }
+            }
+            else
+            {
+                <p>Não há observações cadastradas nesta tarefa.</p>
+            }
+        </div>
+    </div>
+    <div class="col mt-2">
+        @if (Model.Situacao != "Fechada")
+        {
+            <button type="submit" class="btn btn-success col">Salvar</button>            
+        }
+    </div>
+</form>
