@@ -8,7 +8,7 @@ using TarefasFIESC.Sessoes;
 
 namespace TarefasFIESC.Controllers;
 
-public class Login : Controller
+public class LoginController : Controller
 {
     public readonly UserManager<IdentityUser> _userManager;
 
@@ -16,7 +16,7 @@ public class Login : Controller
 
     public readonly ISessao _sessao;
 
-    public Login(UserManager<IdentityUser> userManager, IConfiguration configuration, ISessao sessao)
+    public LoginController(UserManager<IdentityUser> userManager, IConfiguration configuration, ISessao sessao)
     {
         _userManager = userManager;
         _configuration = configuration;
@@ -25,9 +25,7 @@ public class Login : Controller
 
     public IActionResult Entrar()
     {
-        var sessao = _sessao.BuscarSessao();
-
-        if (!string.IsNullOrEmpty(sessao) && GerenciarToken.VerificarToken(sessao, _configuration))
+        if (_sessao.ValidarSessao())
         {
             return RedirectToAction("ListarTarefas", "Tarefa");
         }
@@ -36,11 +34,10 @@ public class Login : Controller
     }
 
     [HttpPost]
-    public IActionResult Entrar(UsuarioModel usuarioModel)
+    public async Task<IActionResult> Entrar(UsuarioModel usuarioModel)
     {
-        var sessao = _sessao.BuscarSessao();
 
-        if (!string.IsNullOrEmpty(sessao) && GerenciarToken.VerificarToken(sessao, _configuration))
+        if (_sessao.ValidarSessao())
         {
             return RedirectToAction("ListarTarefas", "Tarefa");
         }
@@ -49,7 +46,7 @@ public class Login : Controller
 
         if (usuario != null)
         {
-            var token = GerenciarToken.GerarToken(usuario.Email, _userManager, _configuration);
+            var token = GerenciarToken.GerarToken(usuario, _userManager, _configuration);
 
             _sessao.CriarSessao(token);
 
@@ -61,33 +58,33 @@ public class Login : Controller
 
     public IActionResult CriarConta()
     {
+        if (_sessao.ValidarSessao())
+        {
+            return RedirectToAction("ListarTarefas", "Tarefa");
+        }
+
         return View();
     }
 
     [HttpPost]
-    public IActionResult CriarConta(UsuarioModel usuario)
+    public async Task<IActionResult> CriarConta(UsuarioModel usuarioModel)
     {
         var usuarioIdentity = new IdentityUser
         {
-            UserName = usuario.Email,
-            Email = usuario.Email
+            UserName = usuarioModel.Email,
+            Email = usuarioModel.Email
         };
 
         var userClaims = new List<Claim>()
         {
-            new Claim("Nome", usuario.Nome)
+            new Claim("Nome", usuarioModel.Nome)
         };
 
-        _userManager.CreateAsync(usuarioIdentity, usuario.Senha);
+        await _userManager.CreateAsync(usuarioIdentity, usuarioModel.Senha);
 
-        _userManager.AddClaimsAsync(usuarioIdentity, userClaims);
+        await _userManager.AddClaimsAsync(usuarioIdentity, userClaims);
 
-
-        var token = GerenciarToken.GerarToken(usuario.Email, _userManager, _configuration);
-
-        _sessao.CriarSessao(token);
-
-        return RedirectToAction("Tarefa", "ListarTarefas");
+        return RedirectToAction("entrar");
 
     }
     public IActionResult Sair()

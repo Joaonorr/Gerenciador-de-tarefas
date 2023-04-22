@@ -10,10 +10,8 @@ namespace TarefasFIESC.Seguranca;
 
 public class GerenciarToken
 {
-    public static string GerarToken(string email, UserManager<IdentityUser> _userManager, IConfiguration configuration)
+    public static string GerarToken(IdentityUser user, UserManager<IdentityUser> _userManager, IConfiguration configuration)
     {
-        var user = _userManager.FindByEmailAsync(email).Result;
-
         var key = Encoding.ASCII.GetBytes(configuration["JwtBearerTokenSettings:SecretKey"]);
 
         var claims = _userManager.GetClaimsAsync(user).Result;
@@ -86,7 +84,7 @@ public class GerenciarToken
 
         var email = tokenDesc.Claims.First(claim => claim.Type == "email").Value;
 
-        var nome = tokenDesc.Claims.First(claim => claim.Type == "nome").Value;
+        var nome = tokenDesc.Claims.First(claim => claim.Type == "Nome").Value;
 
         string Id = tokenDesc.Claims.First(claim => claim.Type == "Id").Value;
 

@@ -19,11 +19,13 @@ public class GerenciadorDeSessao
     {
         var sessao = _sessao.BuscarSessao();
 
+        if (sessao == null)
+        {
+            return null;
+        }
+
         var usuario = GerenciarToken.DescrToken(sessao);
 
-        return new UsuarioModel
-        {
-            Nome = usuario.Nome
-        };
+        return usuario;
     }
 }

@@ -36,10 +36,15 @@ public static class Servicos
 
         builder.Services.AddScoped<ISessao, Sessao>();
 
+        // Manager Session
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
         builder.Services.AddSession(o =>
         {
             o.Cookie.HttpOnly = true;
             o.Cookie.IsEssential = true;
         });
+
+  
     }
 }
