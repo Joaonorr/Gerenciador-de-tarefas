@@ -55,4 +55,20 @@ public class TarefaController : Controller
 
         return View();
     }
+
+    public IActionResult DetalharTarefa(int id)
+    {
+        if (!_sessao.ValidarSessao())
+        {
+            return RedirectToAction("Entrar", "Login");
+        }
+
+        var tarefa = _tarefaRepository.BuscarTarefa(id);
+
+        var observacoes = _observacaoRepository.BuscarObservacoes(id);
+
+        tarefa.Observacoes = observacoes;
+
+        return View(tarefa);
+    }
 }
