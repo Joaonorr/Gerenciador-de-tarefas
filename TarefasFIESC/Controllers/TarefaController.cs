@@ -109,4 +109,23 @@ public class TarefaController : Controller
 
         return RedirectToAction("ListarTarefas");
     }
+
+    [HttpPost]
+    public IActionResult AdicionarObservacao(int tarefaId, string novaObservacao)
+    {
+        if (!_sessao.ValidarSessao())
+        {
+            return RedirectToAction("Entrar", "Login");
+        }
+
+        ObservacaoModel observacao = new ObservacaoModel()
+        {
+            TarefaId = tarefaId,
+            Descricao = novaObservacao
+        };
+
+        _observacaoRepository.Adicionar(observacao);
+
+        return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
+    }
 }
