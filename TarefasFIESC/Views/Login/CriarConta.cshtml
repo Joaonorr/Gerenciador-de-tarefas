@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "_Layout_public";
+    ViewData["Title"] = "CriarConta";
+    
+}
+
+@model UsuarioModel
+
+<div class="row m-5 ms-0 text-center">
+    <h1>Criar conta</h1>
+</div>
+<form class="row justify-content-center" asp-contoller="CriarConta" asp-action="CriarConta" method="post">
+    <div class="col-sm-6">
+        <div class="mb-3 mt-3 ">
+            <label for="exampleFormControlInput1" class="form-label">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" id="nome">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="email" asp-for="Email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Senha</label>
+            <input type="password" asp-for="Senha" class="form-control" id="senha1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword2" class="form-label">Confirmar senha</label>
+            <input type="password" asp-for="Senha2" class="form-control" id="senha2">
+        </div>
+        <div>
+            <p>Ao criar sua conta, você está aceitando os <a href="">termos de condições</a> e a <a href="">política de privacidade</a> </p>
+        </div>
+        <div class=" col-3 btn-group" role="group" aria-label="criar">
+            <button type="submit" class="btn btn-primary">Criar conta</button>
+        </div>
+        <a class="col-3 m-4" asp-controller="Login" asp-action="Entrar">Entrar </a>
+    </div>
+</form>

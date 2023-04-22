@@ -24,6 +24,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Login/CriarConta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cQ3JpYXJDb250YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Login/Entrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRW50cmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -43,3 +51,7 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-126rb32yp0
+
+[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/_Layout_public.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfcHVibGljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-r00m5hpv1c
