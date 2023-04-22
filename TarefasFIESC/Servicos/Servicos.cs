@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TarefasFIESC.Data;
 using TarefasFIESC.Repository;
 using TarefasFIESC.Sessoes;
@@ -45,6 +46,7 @@ public static class Servicos
             o.Cookie.IsEssential = true;
         });
 
-  
+        // Script alter schema     
+        builder.Configuration.ExecuteQuery();        
     }
 }

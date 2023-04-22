@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TarefasFIESC.Data;
@@ -11,9 +12,10 @@ using TarefasFIESC.Data;
 namespace TarefasFIESC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230422224620_AddUsuarioNomeToTarefaModel")]
+    partial class AddUsuarioNomeToTarefaModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,8 +246,7 @@ namespace TarefasFIESC.Migrations
 
                     b.Property<string>("UsuarioNome")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("UsuarioNome");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -293,8 +294,7 @@ namespace TarefasFIESC.Migrations
 
                     b.Property<string>("UsuarioNome")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("UsuarioNome");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

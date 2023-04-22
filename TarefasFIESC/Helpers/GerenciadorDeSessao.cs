@@ -15,7 +15,7 @@ public class GerenciadorDeSessao
         _sessao = sessao;            
     }
 
-    public UsuarioModel ResgatarNomeDoUsuario()
+    public UsuarioModel ResgatarUsuario()
     {
         var sessao = _sessao.BuscarSessao();
 

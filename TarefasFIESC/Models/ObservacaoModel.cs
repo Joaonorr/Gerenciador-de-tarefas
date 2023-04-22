@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TarefasFIESC.Models;
 
@@ -19,6 +20,7 @@ public class ObservacaoModel
     public Guid UsuarioId { get; set; }
 
     [Required]
+    [Column("usuarioNome")]
     public string UsuarioNome { get; set; }
 
 

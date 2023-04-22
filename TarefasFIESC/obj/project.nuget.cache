@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1LlRmNxM4F+zWmxUHb+ZqzEPQF3vq0b4MJ+Q5CniYXcxa/vz2tf1h2NW8KY7xwK7eI89hFEeCETOC8EOtbcJJQ==",
+  "dgSpecHash": "d4+aVKLFn088HFrvhEUCri5nyeSw4u7wBjmyc5cY4UYw2315jVm5lj1LOxhEcMeAkx7UTs83S8HjjOB4G2UevQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaon\\OneDrive\\Área de Trabalho\\FIESCGIT\\TarefasFIESC\\TarefasFIESC\\TarefasFIESC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\joaon\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\joaon\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\joaon\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\joaon\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

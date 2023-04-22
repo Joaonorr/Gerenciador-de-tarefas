@@ -40,7 +40,7 @@ public class TarefaController : Controller
         var viewTarefaModel = new ViewTarefaModel()
         {
             Tarefas = tarefas,
-            UsuarioModel = usuario.ResgatarNomeDoUsuario()
+            UsuarioModel = usuario.ResgatarUsuario()
         };
 
         return View(viewTarefaModel);
@@ -105,6 +105,14 @@ public class TarefaController : Controller
             return RedirectToAction("Entrar", "Login");
         }
 
+        var token = new GerenciadorDeSessao(_sessao);
+
+        var usuario = token.ResgatarUsuario();
+
+        tarefa.UsuarioNome = usuario.Nome;
+
+        tarefa.UsuarioId = usuario.Id;
+
         _tarefaRepository.Adicionar(tarefa);
 
         return RedirectToAction("ListarTarefas");
@@ -123,6 +131,13 @@ public class TarefaController : Controller
             TarefaId = tarefaId,
             Descricao = novaObservacao
         };
+
+        var token = new GerenciadorDeSessao(_sessao);
+
+        var usuario = token.ResgatarUsuario();
+
+        observacao.UsuarioNome = usuario.Nome;
+        observacao.UsuarioId = usuario.Id;
 
         _observacaoRepository.Adicionar(observacao);
 
