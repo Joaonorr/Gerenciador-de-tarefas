@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TasksFIESC.Models;
+using TarefasFIESC.Models;
+
+namespace TarefasFIESC.Data;
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {

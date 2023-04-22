@@ -1,4 +1,4 @@
-﻿namespace TasksFIESC.Models;
+﻿namespace TarefasFIESC.Models;
 
 public class ViewTarefaModel
 {
