@@ -18,9 +18,12 @@ public class ObservacaoRepository : IObservacaoRepository
         TarefaModel tarefa = _context.Tarefa.FirstOrDefault(t => t.Id == observacao.TarefaId);
 
         if (tarefa == null)
+        {
             return null;
+        }
 
         _context.Observacao.Add(observacao);
+
         _context.SaveChanges();
 
         return observacao;
@@ -29,7 +32,9 @@ public class ObservacaoRepository : IObservacaoRepository
     public ObservacaoModel Editar(ObservacaoModel observacao)
     {
         _context.Observacao.Update(observacao);
+
         _context.SaveChanges();
+
         return observacao;
     }
 
