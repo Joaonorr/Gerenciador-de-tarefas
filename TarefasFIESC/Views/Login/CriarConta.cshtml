@@ -14,18 +14,22 @@
         <div class="mb-3 mt-3 ">
             <label for="exampleFormControlInput1" class="form-label">Nome</label>
             <input type="text" asp-for="Nome" class="form-control" id="nome">
+            @Html.ValidationMessageFor(x => x.Nome)
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input type="email" asp-for="Email" class="form-control" id="email">
+            @Html.ValidationMessageFor(x => x.Email)
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Senha</label>
             <input type="password" asp-for="Senha" class="form-control" id="senha1">
+            @Html.ValidationMessageFor(x => x.Senha)
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword2" class="form-label">Confirmar senha</label>
             <input type="password" asp-for="Senha2" class="form-control" id="senha2">
+            @Html.ValidationMessageFor(x => x.Senha2)
         </div>
         <div>
             <p>Ao criar sua conta, você está aceitando os <a href="">termos de condições</a> e a <a href="">política de privacidade</a> </p>

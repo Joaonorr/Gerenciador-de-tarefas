@@ -26,8 +26,9 @@ public class TarefaController : Controller
         _configuration = configuration;
     }
 
-    public IActionResult ListarTarefas()
+    public IActionResult ListarTarefas(int id)
     {
+
         if (!_sessao.ValidarSessao())
         {
             return RedirectToAction("Entrar", "Login");
@@ -42,6 +43,11 @@ public class TarefaController : Controller
             Tarefas = tarefas,
             UsuarioModel = usuario.ResgatarUsuario()
         };
+
+        if (id != 0)
+        {
+            viewTarefaModel.TarefaCriadaId = id;
+        }
 
         return View(viewTarefaModel);
     }
@@ -120,9 +126,9 @@ public class TarefaController : Controller
 
         tarefa.UsuarioId = usuario.Id;
 
-        _tarefaRepository.Adicionar(tarefa);
+        var novaTarefa = _tarefaRepository.Adicionar(tarefa);
 
-        return RedirectToAction("ListarTarefas");
+        return RedirectToAction("ListarTarefas", new { novaTarefa.Id });
     }
 
     [HttpPost]

@@ -8,6 +8,13 @@
         Olá, @Model.UsuarioModel.Nome<h5>
             <h1>Lista de tarefa</h1>
 </div>
+@if (Model.TarefaCriadaId != 0)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        tarefa de número @Model.TarefaCriadaId criada com sucesso!
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>    
+}
 <table class="table" id="Tabela-Tarefas">
     <thead>
         <tr>
