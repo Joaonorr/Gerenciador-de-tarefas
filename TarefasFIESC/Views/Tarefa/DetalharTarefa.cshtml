@@ -30,7 +30,7 @@
             <p><strong>Situação:</strong> @tarefa.Situacao</p>
             @if (tarefa.Situacao != "Fechada" && tarefa.UsuarioId == Model.UsuarioModel.Id)
             {
-                <button type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar tarefa</button>
+                <a type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar tarefa</a>
             }
         </div>
     </div>

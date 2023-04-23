@@ -25,7 +25,18 @@
         {
             foreach (var tarefa in Model.Tarefas)
             {
-                <tr>
+                if (tarefa.Situacao != "Aberta")
+                {
+                    continue;
+                }
+
+                string estilo = "";
+                if (tarefa.UsuarioId == Model.UsuarioModel.Id)
+                {
+                    estilo = "table-warning";
+                }
+
+                <tr class="@estilo">
                     <th scope="row"><a asp-controller="Tarefa" asp-action="DetalharTarefa" asp-route-id="@tarefa.Id">@tarefa.Id</a></th>
                     <td>@tarefa.Titulo</td>
                     <td>@tarefa.Tipo</td>
