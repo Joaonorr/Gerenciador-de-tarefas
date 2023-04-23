@@ -42,7 +42,7 @@ public class TarefaRepository : ITarefaRepository
     }
 
 
-    public TarefaModel EditarTarefa(int id, string descricaoFinal)
+    public TarefaModel FinalizarTarefa(int id, string descricaoFinal)
     {
         var tarefa = _context.Tarefa.FirstOrDefault(t => t.Id == id);
 
@@ -54,6 +54,26 @@ public class TarefaRepository : ITarefaRepository
         tarefa.DescricaoFinal = descricaoFinal;
 
         tarefa.Situacao = "Fechada";
+
+        _context.Tarefa.Update(tarefa);
+
+        _context.SaveChanges();
+
+        return tarefa;
+    }
+
+    public TarefaModel EditarReponsavel(int id, UsuarioModel usuarioModel)
+    {
+        var tarefa = _context.Tarefa.FirstOrDefault(t => t.Id == id);
+
+        if (tarefa == null)
+        {
+            return null;
+        }
+
+        tarefa.UsuarioId = usuarioModel.Id;
+
+        tarefa.UsuarioNome = usuarioModel.Nome;
 
         _context.Tarefa.Update(tarefa);
 

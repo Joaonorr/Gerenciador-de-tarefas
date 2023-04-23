@@ -42,7 +42,7 @@ public class ObservacaoRepository : IObservacaoRepository
     {
         List< ObservacaoModel> observacoes = _context.Observacao
             .Where(o => o.TarefaId == tarefaId)
-            .OrderBy(o => o.DataCriacao)
+            .OrderByDescending(o => o.DataCriacao)
             .ToList();
 
         return observacoes;

@@ -99,7 +99,7 @@ public class TarefaController : Controller
             return RedirectToAction("Entrar", "Login");
         }
 
-        _tarefaRepository.EditarTarefa(id, descricaoFinal);
+        _tarefaRepository.FinalizarTarefa(id, descricaoFinal);
 
         return RedirectToAction("ListarTarefas");
     }
@@ -144,10 +144,31 @@ public class TarefaController : Controller
         var usuario = token.ResgatarUsuario();
 
         observacao.UsuarioNome = usuario.Nome;
+
         observacao.UsuarioId = usuario.Id;
 
         _observacaoRepository.Adicionar(observacao);
 
         return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
     }
+
+
+    [HttpPost]
+    public IActionResult EditarReponsavel(int tarefaId)
+    {
+        if (!_sessao.ValidarSessao())
+        {
+            return RedirectToAction("Entrar", "Login");
+        }
+
+        var token = new GerenciadorDeSessao(_sessao);
+
+        var usuario = token.ResgatarUsuario();
+
+        _tarefaRepository.EditarReponsavel(tarefaId, usuario);
+
+        return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
+    }
+
+
 }

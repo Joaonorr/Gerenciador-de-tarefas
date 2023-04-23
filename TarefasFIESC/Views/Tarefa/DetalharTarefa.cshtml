@@ -3,16 +3,19 @@
     TarefaModel tarefa = Model.Tarefas[0];
 }
 
-<form asp-contoller="Tarefa" asp-action="AdicionarObservacao" method="post">
+<div>
     <a asp-controller="Tarefa" asp-action="ListarTarefas">Voltar</a>
     <div class="row mt-2">
         <div class="col">
             <p class="display-6">Detalhes da tarefa @tarefa.Id</p>
             <h3>@Model.Tarefas[0].Titulo</h3>
             <p><strong>Responsável: </strong> @tarefa.UsuarioNome</p>
-            @if (tarefa.Situacao != "Fechada" && tarefa.UsuarioId != Model.UsuarioModel.Id )
+            @if (tarefa.Situacao != "Fechada" && tarefa.UsuarioId != Model.UsuarioModel.Id)
             {
-                <button type="button" class="btn btn-secondary col-2">Assumir Tarefa</button>                
+                <form id="assumir-tarefa-form" asp-controller="Tarefa" asp-action="EditarReponsavel" method="post">
+                    <input type="hidden" name="tarefaId" value="@tarefa.Id" />
+                    <button type="submit" class="btn btn-secondary col-2" form="assumir-tarefa-form">Assumir Tarefa</button>
+                </form>
             }
         </div>
     </div>
@@ -27,38 +30,40 @@
             <p><strong>Situação:</strong> @tarefa.Situacao</p>
             @if (tarefa.Situacao != "Fechada" && tarefa.UsuarioId == Model.UsuarioModel.Id)
             {
-                <a type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar tarefa</a>
+                <button type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar tarefa</button>
             }
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-3">
-            <h6>Nova observação</h6>
-            <textarea name="novaObservacao" class="form-control form-control-plaintext bg-body px-2" style="--bs-bg-opacity: .2;" rows="5"></textarea>
-            <input type="hidden" name="tarefaId" value="@tarefa.Id" />
-        </div>
-        <div class="col">
-            <h6>Observações</h6>
-            @if (Model.Observacoes != null && Model.Observacoes.Count > 0)
-            {
-                List<ObservacaoModel> teste = Model.Observacoes.ToList();
-                foreach (ObservacaoModel observacao in Model.Observacoes)
+    <form asp-contoller="Tarefa" asp-action="AdicionarObservacao" method="post">
+        <div class="row mt-3">
+            <div class="col-3">
+                <h6>Nova observação</h6>
+                <textarea name="novaObservacao" class="form-control form-control-plaintext bg-body px-2" style="--bs-bg-opacity: .2;" rows="5"></textarea>
+                <input type="hidden" name="tarefaId" value="@tarefa.Id" />
+            </div>
+            <div class="col">
+                <h6>Observações</h6>
+                @if (Model.Observacoes != null && Model.Observacoes.Count > 0)
                 {
-                    <p><strong>Usuário XXX</strong> em @observacao.DataCriacao</p>
-                    <textarea class="form-control form-control-plaintext px-2" readonly>@observacao.Descricao</textarea>
+                    List<ObservacaoModel> teste = Model.Observacoes.ToList();
+                    foreach (ObservacaoModel observacao in Model.Observacoes)
+                    {
+                        <p><strong>@observacao.UsuarioNome</strong> em @observacao.DataCriacao</p>
+                        <textarea class="form-control form-control-plaintext px-2" readonly>@observacao.Descricao</textarea>
 
+                    }
                 }
-            }
-            else
+                else
+                {
+                    <p>Não há observações cadastradas nesta tarefa.</p>
+                }
+            </div>
+        </div>
+        <div class="col mt-2">
+            @if (tarefa.Situacao != "Fechada")
             {
-                <p>Não há observações cadastradas nesta tarefa.</p>
+                <button type="submit" class="btn btn-success col">Salvar</button>
             }
         </div>
-    </div>
-    <div class="col mt-2">
-        @if (tarefa.Situacao != "Fechada")
-        {
-            <button type="submit" class="btn btn-success col">Salvar</button>            
-        }
-    </div>
-</form>
+    </form>
+</div>
