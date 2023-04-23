@@ -14,5 +14,7 @@ public class UsuarioModel
     [MinLength(8)]
     public string Senha { get; set; }
 
+    [Required(ErrorMessage = "O campo de confirmar senha é obrigatório")]
+    [MinLength(8)]
     public string Senha2 { get; set; }
 }

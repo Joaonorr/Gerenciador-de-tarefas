@@ -13,10 +13,12 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input type="email" asp-for="Email" class="form-control" id="email">
+            @Html.ValidationMessageFor(x => x.Email)
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Senha</label>
             <input type="password" asp-for="Senha" class="form-control" id="senha1">
+            @Html.ValidationMessageFor(x => x.Senha)
         </div>
         <div class=" col-3 btn-group" role="group" aria-label="Entrar">
             <button type="submit" class="btn btn-primary">Entrar</button>

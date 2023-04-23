@@ -36,6 +36,12 @@ public class LoginController : Controller
     [HttpPost]
     public async Task<IActionResult> Entrar(UsuarioModel usuarioModel)
     {
+        usuarioModel.Senha2 = usuarioModel.Senha;
+
+        if (!ModelState.IsValid)
+        {
+            return View(usuarioModel);
+        }
 
         if (_sessao.ValidarSessao())
         {
@@ -69,6 +75,11 @@ public class LoginController : Controller
     [HttpPost]
     public async Task<IActionResult> CriarConta(UsuarioModel usuarioModel)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(usuarioModel);
+        }
+
         var usuarioIdentity = new IdentityUser
         {
             UserName = usuarioModel.Email,
