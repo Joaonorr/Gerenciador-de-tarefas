@@ -4,7 +4,8 @@ using Dapper;
 namespace TarefasFIESC.Data;
 
 public static class EditarEsquema
-{    public static void ExecuteQuery(this IConfiguration configuration)
+{   
+    public static void ExecuteQuery(this IConfiguration configuration)
     {
         var connString = configuration["DbContextSettings:ConnectionString"];
 

@@ -63,13 +63,20 @@ public class TarefaController : Controller
             return RedirectToAction("Entrar", "Login");
         }
 
-        var tarefa = _tarefaRepository.BuscarTarefa(id);
+        var tarefa = new List<TarefaModel>() { _tarefaRepository.BuscarTarefa(id) };
 
         var observacoes = _observacaoRepository.BuscarObservacoes(id);
 
-        tarefa.Observacoes = observacoes;
+        var usuario = new GerenciadorDeSessao(_sessao);
 
-        return View(tarefa);
+        var viewTarefaModel = new ViewTarefaModel()
+        {
+            Tarefas = tarefa,
+            Observacoes = observacoes,
+            UsuarioModel = usuario.ResgatarUsuario()
+        };
+
+        return View(viewTarefaModel);
     }
 
     public IActionResult FinalizarTarefa(int id)

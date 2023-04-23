@@ -1,13 +1,16 @@
-﻿@model TarefaModel
+﻿@model ViewTarefaModel
+@{
+    TarefaModel tarefa = Model.Tarefas[0];
+}
 
 <form asp-contoller="Tarefa" asp-action="AdicionarObservacao" method="post">
     <a asp-controller="Tarefa" asp-action="ListarTarefas">Voltar</a>
     <div class="row mt-2">
         <div class="col">
-            <p class="display-6">Detalhes da tarefa @Model.Id</p>
-            <h3>@Model.Titulo</h3>
-            <p><strong>Responsável: </strong> XXNome do usuárioXX</p>
-            @if (Model.Situacao != "Fechada")
+            <p class="display-6">Detalhes da tarefa @tarefa.Id</p>
+            <h3>@Model.Tarefas[0].Titulo</h3>
+            <p><strong>Responsável: </strong> @tarefa.UsuarioNome</p>
+            @if (tarefa.Situacao != "Fechada" && tarefa.UsuarioId != Model.UsuarioModel.Id )
             {
                 <button type="button" class="btn btn-secondary col-2">Assumir Tarefa</button>                
             }
@@ -15,16 +18,16 @@
     </div>
     <div class="row mt-3">
         <div class="col-8">
-            <textarea class="form-control form-control-plaintext px-2" rows="8" readonly>@Model.Descricao</textarea>
+            <textarea class="form-control form-control-plaintext px-2" rows="8" readonly>@tarefa.Descricao</textarea>
         </div>
         <div class="col">
-            <p><strong>Prioridade:</strong> @Model.Prioridade</p>
-            <p><strong>Tipo:</strong> @Model.Tipo</p>
-            <p><strong>Criação:</strong> @Model.DataDeCricacao</p>
-            <p><strong>Situação:</strong> @Model.Situacao</p>
-            @if (Model.Situacao != "Fechada")
+            <p><strong>Prioridade:</strong> @tarefa.Prioridade</p>
+            <p><strong>Tipo:</strong> @tarefa.Tipo</p>
+            <p><strong>Criação:</strong> @tarefa.DataDeCricacao</p>
+            <p><strong>Situação:</strong> @tarefa.Situacao</p>
+            @if (tarefa.Situacao != "Fechada" && tarefa.UsuarioId == Model.UsuarioModel.Id)
             {
-                <a type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@Model.Id">Finalizar tarefa</a>                
+                <a type="button" class="btn btn-warning col" asp-controller="Tarefa" asp-action="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar tarefa</a>
             }
         </div>
     </div>
@@ -32,7 +35,7 @@
         <div class="col-3">
             <h6>Nova observação</h6>
             <textarea name="novaObservacao" class="form-control form-control-plaintext bg-body px-2" style="--bs-bg-opacity: .2;" rows="5"></textarea>
-            <input type="hidden" name="tarefaId" value="@Model.Id" />
+            <input type="hidden" name="tarefaId" value="@tarefa.Id" />
         </div>
         <div class="col">
             <h6>Observações</h6>
@@ -53,7 +56,7 @@
         </div>
     </div>
     <div class="col mt-2">
-        @if (Model.Situacao != "Fechada")
+        @if (tarefa.Situacao != "Fechada")
         {
             <button type="submit" class="btn btn-success col">Salvar</button>            
         }
