@@ -8,12 +8,11 @@ namespace TarefasFIESC.Data;
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
-    private readonly IConfiguration _configuration;
     public DbSet<TarefaModel> Tarefa { get; set; }
     public DbSet<ObservacaoModel> Observacao { get; set; }
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options) 
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
     {
-
+        
     }
 
 

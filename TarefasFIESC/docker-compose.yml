@@ -1,0 +1,19 @@
+services:
+  BancoTarefasFIESC:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "psql1234"
+      POSTGRES_DB: "TarefasFIESC"
+    ports:
+      - 5432:5432
+    command: -p 5432
+    
+  # TarefasFIESC:
+  #   depends_on: 
+  #     - BancoTarefasFIESC
+  #   network_mode: "host"
+  #   image: tarefasfiesc
+  #   build: .
+  #   ports:
+  #     - 127.0.0.1:5000:80
+  #   restart: always
