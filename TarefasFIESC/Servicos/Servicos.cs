@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TarefasFIESC.Data;
@@ -19,6 +20,17 @@ public static class Servicos
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(pgsqlConnection));
+
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
+
+            options.UseNpgsql(configuration.GetConnectionString(pgsqlConnection));
+        });
+
 
         // Repository
         builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
@@ -47,6 +59,10 @@ public static class Servicos
         });
 
         // Script alter schema     
-        builder.Configuration.ExecuteQuery();        
+        //builder.Configuration.ExecuteQuery();       
+
+    //     builder.Services.AddDataProtection()
+    //     .PersistKeysToFileSystem(new DirectoryInfo(@"c:\keys"))
+    //     .SetApplicationName("MyApplication"); 
     }
 }
