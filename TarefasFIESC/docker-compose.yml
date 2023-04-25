@@ -1,3 +1,9 @@
+version: '3.9'
+
+networks:
+  docker-tarefasfiesc:
+    driver: bridge
+
 services:
   BancoTarefasFIESC:
     image: postgres
@@ -7,13 +13,18 @@ services:
     ports:
       - 5432:5432
     command: -p 5432
+    networks: 
+      - docker-tarefasfiesc
     
-  # TarefasFIESC:
-  #   depends_on: 
-  #     - BancoTarefasFIESC
-  #   network_mode: "host"
-  #   image: tarefasfiesc
-  #   build: .
-  #   ports:
-  #     - 127.0.0.1:5000:80
-  #   restart: always
+  TarefasFIESC:
+    depends_on: 
+      - BancoTarefasFIESC
+    image: tarefasfiesc
+    build: .
+    environment: 
+      DB_CONNECTION_string: "User ID=postgres;Password=psql1234;Host=BancoTarefasFIESC;Port=5432;Database=TarefasFIESC;SslMode=disable;Pooling=true"
+    ports:
+      - 5000:80
+    restart: always
+    networks: 
+      - docker-tarefasfiesc

@@ -49,16 +49,12 @@ Por fim, altere esse arquivo com as instruções de como poderemos testar o seu 
 - PostgrSQL
 
 ## Como executar
-Entre na pasta `TarefasFIESC` e execute o comando 
-```
-$ dotnet run
-```
-Para a aplicação funcionar corretamente, é necessário está com o banco de dados rodando na porta 5432, com o usuário `postgres` e senha `psql1234`. Caso queira alterar essas configurações, basta alterar o arquivo `appsettings.json` na pasta `TarefasFIESC`.
-Para facilitar a criação do banco de dados, com o docker compose instalado, basta executar o comando na pasta `TarefasFIESC`:
+Todo o ambiente de desenvolvimento foi configurado em um container Docker, para executar o sistema e o banco de dados, basta executar o comando abaixo na pasta `TarefasFIESC`:
+
 ```bash
 $ docker-compose up -d
 ```
-O comando acima irá criar um container com o banco de dados rodando na porta 5432, com o usuário `postgres` e senha `psql1234`.
+O comando acima irá criar um container com o banco de dados rodando na porta 5432 e o sistema rodando na porta 5000.
 
 # Informações adicionais
 - A aplicação foi desenvolvida utilizando o Entity Framework Core para criar as migrations e o banco de dados da .

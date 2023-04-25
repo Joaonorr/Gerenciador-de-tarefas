@@ -16,7 +16,8 @@ public static class Servicos
         builder.Services.AddControllersWithViews();
 
         // DataBase
-        var pgsqlConnection = builder.Configuration["DbContextSettings:ConnectionString"];
+        // var pgsqlConnection = builder.Configuration["DbContextSettings:ConnectionString"];
+        var pgsqlConnection = Environment.GetEnvironmentVariable("DB_CONNECTION_string");
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(pgsqlConnection));
