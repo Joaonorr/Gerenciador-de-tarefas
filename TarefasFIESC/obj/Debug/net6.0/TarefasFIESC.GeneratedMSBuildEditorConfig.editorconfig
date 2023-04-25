@@ -9,65 +9,69 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TarefasFIESC
 build_property.RootNamespace = TarefasFIESC
-build_property.ProjectDir = C:\Users\joaon\OneDrive\Área de Trabalho\FIESCGIT\TarefasFIESC\TarefasFIESC\
+build_property.ProjectDir = c:\Users\joaon\OneDrive\Documentos\QA-JR-00723-2023\TarefasFIESC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\joaon\OneDrive\Área de Trabalho\FIESCGIT\TarefasFIESC\TarefasFIESC
+build_property.MSBuildProjectDirectory = c:\Users\joaon\OneDrive\Documentos\QA-JR-00723-2023\TarefasFIESC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Home/Index.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Exception/ComportamentoInesperado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhjZXB0aW9uXENvbXBvcnRhbWVudG9JbmVzcGVyYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Home/Privacy.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Login/CriarConta.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Login/CriarConta.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cQ3JpYXJDb250YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Login/Entrar.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Login/Entrar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRW50cmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/Error.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Tarefa/CriarTarefa.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Tarefa/CriarTarefa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWZhXENyaWFyVGFyZWZhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Tarefa/DetalharTarefa.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Tarefa/DetalharTarefa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWZhXERldGFsaGFyVGFyZWZhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Tarefa/FinalizarTarefa.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Tarefa/FinalizarTarefa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWZhXEZpbmFsaXphclRhcmVmYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Tarefa/ListarTarefas.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Tarefa/ListarTarefas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWZhXExpc3RhclRhcmVmYXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/_ViewImports.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/_ViewStart.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/_Layout.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-126rb32yp0
 
-[C:/Users/joaon/OneDrive/Área de Trabalho/FIESCGIT/TarefasFIESC/TarefasFIESC/Views/Shared/_Layout_public.cshtml]
+[c:/Users/joaon/OneDrive/Documentos/QA-JR-00723-2023/TarefasFIESC/Views/Shared/_Layout_public.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfcHVibGljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = b-r00m5hpv1c

@@ -9,32 +9,37 @@
         <div class="col-6">
             <label for="Titulo" class="col-sm-2 col-form-label">Título*</label>
             <input type="text" asp-for="Titulo" class="form-control" placeholder="">
+            @Html.ValidationMessageFor(x => x.Titulo)
         </div>
         <div class="col">
             <label for="title" class="col-sm-2 col-form-label">Tipo*</label>
             <select class="form-select" aria-label="Type" asp-for="Tipo">
-                <option selected>Selecione um tipo</option>
+                <option selected></option>
                 <option>Incidente</option>
                 <option>Solicitação de Serviço</option>
                 <option>Melhorias</option>
                 <option>Projetos</option>
             </select>
+            @Html.ValidationMessageFor(x => x.Tipo)
         </div>
         <div class="col">
             <label for="title" class="col-sm-2 col-form-label">Prioridade*</label>
             <select class="form-select" aria-label="Priodidade" asp-for="Prioridade">
-                <option selected>Selecione uma prioridade</option>
+                <option selected></option>
                 <option>Alta</option>
                 <option>Média</option>
                 <option>Baixa</option>
                 <option>Sem prioridade</option>
             </select>
+            @Html.ValidationMessageFor(x => x.Prioridade)
         </div>
     </div>
     <div class="row mt-3">
         <div class="col">
             <label for="description" class="col-sm-2 col-form-label">Descrição</label>
             <textarea class="form-control" id="description" rows="5" asp-for="Descricao"></textarea>
+            @Html.ValidationMessageFor(x => x.Descricao)
+            @* @Html.TextAreaFor(m => m.Descricao, new { rows = "20", style = "resize:none;width:400px;",placeholder = Html.DisplayNameFor(m => m.Descricao), @class = "form-control input-lg textarea-editor" }) *@
         </div>
     </div>
     <div class="row mt-4">

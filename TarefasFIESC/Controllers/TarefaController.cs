@@ -28,152 +28,224 @@ public class TarefaController : Controller
 
     public IActionResult ListarTarefas(int id)
     {
-
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            var tarefas = _tarefaRepository.BuscarTarefas();
+
+            var usuario = new GerenciadorDeSessao(_sessao);
+
+            var viewTarefaModel = new ViewTarefaModel()
+            {
+                Tarefas = tarefas,
+                UsuarioModel = usuario.ResgatarUsuario()
+            };
+
+            if (id != 0)
+            {
+                viewTarefaModel.TarefaCriadaId = id;
+            }
+
+            return View(viewTarefaModel);
         }
-
-        var tarefas = _tarefaRepository.BuscarTarefas();
-
-        var usuario = new GerenciadorDeSessao(_sessao);
-
-        var viewTarefaModel = new ViewTarefaModel()
+        catch (Exception)
         {
-            Tarefas = tarefas,
-            UsuarioModel = usuario.ResgatarUsuario()
-        };
 
-        if (id != 0)
-        {
-            viewTarefaModel.TarefaCriadaId = id;
+            return RedirectToAction("ComportamentoInesperado", "Exception");
         }
-
-        return View(viewTarefaModel);
+        
     }
 
     public IActionResult CriarTarefa()
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
-        }
+            
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
 
-        return View();
+            return View();
+        }
+        catch (Exception)
+        {
+
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 
     public IActionResult DetalharTarefa(int id)
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            var tarefa = new List<TarefaModel>() { _tarefaRepository.BuscarTarefa(id) };
+
+            var observacoes = _observacaoRepository.BuscarObservacoes(id);
+
+            var usuario = new GerenciadorDeSessao(_sessao);
+
+            var viewTarefaModel = new ViewTarefaModel()
+            {
+                Tarefas = tarefa,
+                Observacoes = observacoes,
+                UsuarioModel = usuario.ResgatarUsuario()
+            };
+
+            return View(viewTarefaModel);
         }
-
-        var tarefa = new List<TarefaModel>() { _tarefaRepository.BuscarTarefa(id) };
-
-        var observacoes = _observacaoRepository.BuscarObservacoes(id);
-
-        var usuario = new GerenciadorDeSessao(_sessao);
-
-        var viewTarefaModel = new ViewTarefaModel()
+        catch (Exception)
         {
-            Tarefas = tarefa,
-            Observacoes = observacoes,
-            UsuarioModel = usuario.ResgatarUsuario()
-        };
 
-        return View(viewTarefaModel);
+            return View("ExceptionController", "ComportamentoInesperado");
+        }
+        
     }
 
     public IActionResult FinalizarTarefa(int id)
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            var tarefa = _tarefaRepository.BuscarTarefa(id);
+
+            return View(tarefa);
         }
+        catch (Exception)
+        {
 
-        var tarefa = _tarefaRepository.BuscarTarefa(id);
-
-        return View(tarefa);
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 
     [HttpPost]
     public IActionResult FinalizarTarefa(int id, string descricaoFinal)
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            _tarefaRepository.FinalizarTarefa(id, descricaoFinal);
+
+            return RedirectToAction("ListarTarefas");
         }
+        catch (Exception)
+        {
 
-        _tarefaRepository.FinalizarTarefa(id, descricaoFinal);
-
-        return RedirectToAction("ListarTarefas");
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 
     [HttpPost]
     public IActionResult CriarTarefa(TarefaModel tarefa)
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            var token = new GerenciadorDeSessao(_sessao);
+
+            var usuario = token.ResgatarUsuario();
+
+            tarefa.UsuarioNome = usuario.Nome;
+
+            tarefa.UsuarioId = usuario.Id;
+
+            if (!ModelState.IsValid)
+            {
+                return View(tarefa);
+            }
+
+            var novaTarefa = _tarefaRepository.Adicionar(tarefa);
+
+            return RedirectToAction("ListarTarefas", new { novaTarefa.Id });
         }
+        catch (Exception)
+        {
 
-        var token = new GerenciadorDeSessao(_sessao);
-
-        var usuario = token.ResgatarUsuario();
-
-        tarefa.UsuarioNome = usuario.Nome;
-
-        tarefa.UsuarioId = usuario.Id;
-
-        var novaTarefa = _tarefaRepository.Adicionar(tarefa);
-
-        return RedirectToAction("ListarTarefas", new { novaTarefa.Id });
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 
     [HttpPost]
     public IActionResult AdicionarObservacao(int tarefaId, string novaObservacao)
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            ObservacaoModel observacao = new ObservacaoModel()
+            {
+                TarefaId = tarefaId,
+                Descricao = novaObservacao
+            };            
+
+            var token = new GerenciadorDeSessao(_sessao);
+
+            var usuario = token.ResgatarUsuario();
+
+            observacao.UsuarioNome = usuario.Nome;
+
+            observacao.UsuarioId = usuario.Id;
+
+            _observacaoRepository.Adicionar(observacao);
+
+            return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
         }
-
-        ObservacaoModel observacao = new ObservacaoModel()
+        catch (Exception)
         {
-            TarefaId = tarefaId,
-            Descricao = novaObservacao
-        };
 
-        var token = new GerenciadorDeSessao(_sessao);
-
-        var usuario = token.ResgatarUsuario();
-
-        observacao.UsuarioNome = usuario.Nome;
-
-        observacao.UsuarioId = usuario.Id;
-
-        _observacaoRepository.Adicionar(observacao);
-
-        return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 
 
     [HttpPost]
     public IActionResult EditarReponsavel(int tarefaId)
     {
-        if (!_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("Entrar", "Login");
+            if (!_sessao.ValidarSessao())
+            {
+                return RedirectToAction("Entrar", "Login");
+            }
+
+            var token = new GerenciadorDeSessao(_sessao);
+
+            var usuario = token.ResgatarUsuario();
+
+            _tarefaRepository.EditarReponsavel(tarefaId, usuario);
+
+            return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
         }
+        catch (Exception)
+        {
 
-        var token = new GerenciadorDeSessao(_sessao);
-
-        var usuario = token.ResgatarUsuario();
-
-        _tarefaRepository.EditarReponsavel(tarefaId, usuario);
-
-        return RedirectToAction($"DetalharTarefa", new { id = tarefaId });
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 
 

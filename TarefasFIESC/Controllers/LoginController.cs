@@ -36,65 +36,99 @@ public class LoginController : Controller
     [HttpPost]
     public async Task<IActionResult> Entrar(UsuarioModel usuarioModel)
     {
-        if (_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("ListarTarefas", "Tarefa");
+            if (_sessao.ValidarSessao())
+            {
+                return RedirectToAction("ListarTarefas", "Tarefa");
+            }
+
+            var usuario = _userManager.FindByEmailAsync(usuarioModel.Email).Result;
+
+            if (usuario != null)
+            {
+                var token = GerenciarToken.GerarToken(usuario, _userManager, _configuration);
+
+                _sessao.CriarSessao(token);
+
+                return RedirectToAction("ListarTarefas", "Tarefa");
+            }
+
+            return View();
         }
-
-        var usuario = _userManager.FindByEmailAsync(usuarioModel.Email).Result;
-
-        if (usuario != null)
+        catch (Exception)
         {
-            var token = GerenciarToken.GerarToken(usuario, _userManager, _configuration);
 
-            _sessao.CriarSessao(token);
-
-            return RedirectToAction("ListarTarefas", "Tarefa");
+            return RedirectToAction("ComportamentoInesperado", "Exception");
         }
-
-        return View();
+        
     }
 
     public IActionResult CriarConta()
     {
-        if (_sessao.ValidarSessao())
+        try
         {
-            return RedirectToAction("ListarTarefas", "Tarefa");
-        }
+            if (_sessao.ValidarSessao())
+            {
+                return RedirectToAction("ListarTarefas", "Tarefa");
+            }
 
-        return View();
+            return View();
+        }
+        catch (Exception)
+        {
+
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
+      
     }
 
     [HttpPost]
     public async Task<IActionResult> CriarConta(UsuarioModel usuarioModel)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return View(usuarioModel);
+            if (!ModelState.IsValid)
+            {
+                return View(usuarioModel);
+            }
+
+            var usuarioIdentity = new IdentityUser
+            {
+                UserName = usuarioModel.Email,
+                Email = usuarioModel.Email
+            };
+
+            var userClaims = new List<Claim>()
+            {
+                new Claim("Nome", usuarioModel.Nome)
+            };
+
+            await _userManager.CreateAsync(usuarioIdentity, usuarioModel.Senha);
+
+            await _userManager.AddClaimsAsync(usuarioIdentity, userClaims);
+
+            return RedirectToAction("entrar");
         }
-
-        var usuarioIdentity = new IdentityUser
+        catch (Exception)
         {
-            UserName = usuarioModel.Email,
-            Email = usuarioModel.Email
-        };
 
-        var userClaims = new List<Claim>()
-        {
-            new Claim("Nome", usuarioModel.Nome)
-        };
-
-        await _userManager.CreateAsync(usuarioIdentity, usuarioModel.Senha);
-
-        await _userManager.AddClaimsAsync(usuarioIdentity, userClaims);
-
-        return RedirectToAction("entrar");
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
 
     }
     public IActionResult Sair()
     {
-        _sessao.RemoverSessao();
+        try
+        {
+            _sessao.RemoverSessao();
 
-        return View("Entrar");
+            return View("Entrar");
+        }
+        catch (Exception)
+        {
+
+            return RedirectToAction("ComportamentoInesperado", "Exception");
+        }
     }
 }

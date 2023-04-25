@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d4+aVKLFn088HFrvhEUCri5nyeSw4u7wBjmyc5cY4UYw2315jVm5lj1LOxhEcMeAkx7UTs83S8HjjOB4G2UevQ==",
+  "dgSpecHash": "na6NWZkqRqJH4M3g1N+QBMiCtOA0fsCIAhvTuwCqW3ZrQptbO6HfYBm2YJ8q+skpWtYaGwPskyBHJA66nOElkw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joaon\\OneDrive\\Área de Trabalho\\FIESCGIT\\TarefasFIESC\\TarefasFIESC\\TarefasFIESC.csproj",
+  "projectFilePath": "C:\\Users\\joaon\\OneDrive\\Documentos\\QA-JR-00723-2023\\TarefasFIESC\\TarefasFIESC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joaon\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\joaon\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

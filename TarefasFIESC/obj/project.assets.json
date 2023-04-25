@@ -2579,11 +2579,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joaon\\OneDrive\\Área de Trabalho\\FIESCGIT\\TarefasFIESC\\TarefasFIESC\\TarefasFIESC.csproj",
+      "projectUniqueName": "C:\\Users\\joaon\\OneDrive\\Documentos\\QA-JR-00723-2023\\TarefasFIESC\\TarefasFIESC.csproj",
       "projectName": "TarefasFIESC",
-      "projectPath": "C:\\Users\\joaon\\OneDrive\\Área de Trabalho\\FIESCGIT\\TarefasFIESC\\TarefasFIESC\\TarefasFIESC.csproj",
+      "projectPath": "C:\\Users\\joaon\\OneDrive\\Documentos\\QA-JR-00723-2023\\TarefasFIESC\\TarefasFIESC.csproj",
       "packagesPath": "C:\\Users\\joaon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joaon\\OneDrive\\Área de Trabalho\\FIESCGIT\\TarefasFIESC\\TarefasFIESC\\obj\\",
+      "outputPath": "C:\\Users\\joaon\\OneDrive\\Documentos\\QA-JR-00723-2023\\TarefasFIESC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\joaon\\AppData\\Roaming\\NuGet\\NuGet.Config",
