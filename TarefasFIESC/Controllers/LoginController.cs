@@ -45,7 +45,7 @@ public class LoginController : Controller
 
             var usuario = _userManager.FindByEmailAsync(usuarioModel.Email).Result;
 
-            if (usuario != null)
+            if (usuario != null && _userManager.CheckPasswordAsync(usuario, usuarioModel.Senha).Result)
             {
                 var token = GerenciarToken.GerarToken(usuario, _userManager, _configuration);
 
